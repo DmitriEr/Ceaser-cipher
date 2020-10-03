@@ -1,0 +1,27 @@
+{
+  "name": "ceaser-cipher",
+  "version": "1.0.0",
+  "description": "task 1",
+  "main": "./ceaser-cipher-cli/index.js",
+  "scripts": {
+    "start": "node caesar-cipher-cli",
+    "demo": "nodemon demo/http.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DmitriEr/Ceaser-cipher.git"
+  },
+  "author": "Dmitrii",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DmitriEr/Ceaser-cipher/issues"
+  },
+  "homepage": "https://github.com/DmitriEr/Ceaser-cipher#readme",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "commander": "^6.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
