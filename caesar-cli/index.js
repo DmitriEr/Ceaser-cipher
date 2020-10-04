@@ -1,12 +1,9 @@
 const commander = require('commander');
 const program = new commander.Command();
-
-const fs = require('fs');
-const path = require('path');
 const through = require('through2');
 
 const { readable, writable } = require('./streams');
-const { getCodePoint } = require('./helper');
+const { cipher } = require('./cipher');
 
 program
   .option('-a, --action_ <string>', 'an action encode/decode')
@@ -29,28 +26,14 @@ program
       throw new Error(`${shift === undefined ? 'Shift' : 'Action'} - required parameter`)
     } else if (isNaN(shift)) {
       throw new Error('Shift - not a number')
-    } 
+    } else if (inputValue !== 'input.txt') {
+      throw new Error('Input.txt required')
+    }
     
     const read = readable(inputValue);
     const write = writable(outputValue);
 
-  read.pipe(through(function(chunk, _, callback) {
-    const array = chunk.toString('utf-8').split('');
-
-    array.forEach((item, index, arr) => {
-      const number = item.codePointAt();
-      if (number >= 65 && number <= 90) {
-        let upperCase = getCodePoint(number, shift, 65, 90, action);
-        return arr[index] = String.fromCodePoint(upperCase);
-      } else if (number >= 97 && number <= 122) {
-        let lowerCase = getCodePoint(number, shift, 97, 122, action);
-        return arr[index] = String.fromCodePoint(lowerCase);
-      }
-    });
-
-    this.push(`${array.join('')}`);
-    callback()
-   })).pipe(write)
+  read.pipe(through(cipher(shift, action))).pipe(write)
 
 } catch(error) {
   process.on('exit', () => {
