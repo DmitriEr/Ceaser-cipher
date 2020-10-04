@@ -1,15 +1,19 @@
 const fs = require('fs');
+const path = require('path');
 
 const readable = (value) => {
   if (value) {
-    return fs.createReadStream(value);
+    const input = path.join(__dirname, value);
+    return fs.createReadStream(input);
   }
+  console.log('Enter text:');
   return process.stdin;
 }
 
 const writable = (value) => {
   if (value) {
-    return fs.createWriteStream(value, { 
+    const output = path.join(__dirname, value);
+    return fs.createWriteStream(output, { 
       'flags': 'a',
       'encoding': null,
       'mode': 0666

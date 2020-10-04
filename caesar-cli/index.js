@@ -7,7 +7,6 @@ const through = require('through2');
 
 const { readable, writable } = require('./streams');
 const { getCodePoint } = require('./helper');
-// const { exit } = require('process');
 
 program
   .option('-a, --action_ <string>', 'an action encode/decode')
@@ -17,25 +16,23 @@ program
   .parse(process.argv);
 
   const inputValue = program.input;
-  const pathToInput = path.join(__dirname, inputValue);
 
   const outputValue = program.output;
-  const pathToOutput = path.join(__dirname, outputValue);
 
   const shift = program.shift !== undefined ? parseInt(program.shift, 10) : program.shift;
   const action = program.action_;
 
-  const read = readable(pathToInput);
-  const write = writable(pathToOutput);
-  console.log(isNaN(shift))
-try {
-  if (shift === undefined && action === undefined) {
-    throw new Error('Shift and Action - required parameter')
-  } else if (shift === undefined || action === undefined) {
-    throw new Error(`${shift === undefined ? 'Shift' : 'Action'} - required parameter`)
-  } else if (isNaN(shift)) {
-    throw new Error('Shift - not a number')
-  }
+  try {
+    if (shift === undefined && action === undefined) {
+      throw new Error('Shift and Action - required parameter')
+    } else if (shift === undefined || action === undefined) {
+      throw new Error(`${shift === undefined ? 'Shift' : 'Action'} - required parameter`)
+    } else if (isNaN(shift)) {
+      throw new Error('Shift - not a number')
+    } 
+    
+    const read = readable(inputValue);
+    const write = writable(outputValue);
 
   read.pipe(through(function(chunk, _, callback) {
     const array = chunk.toString('utf-8').split('');
@@ -50,9 +47,8 @@ try {
         return arr[index] = String.fromCodePoint(lowerCase);
       }
     });
-    // console.log(arr.join)
 
-    this.push(`${array.join('')}\n`);
+    this.push(`${array.join('')}`);
     callback()
    })).pipe(write)
 
@@ -60,8 +56,4 @@ try {
   process.on('exit', () => {
     process.stderr.write(`${error}`)
   })
-    // function exit(error) {
-      // process
-    // }
-  // throw new Error(error);
 }
