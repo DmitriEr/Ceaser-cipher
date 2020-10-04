@@ -26,8 +26,6 @@ program
       throw new Error(`${shift === undefined ? 'Shift' : 'Action'} - required parameter`)
     } else if (isNaN(shift)) {
       throw new Error('Shift - not a number')
-    } else if (inputValue !== 'input.txt') {
-      throw new Error('Input.txt required')
     }
     
     const read = readable(inputValue);
