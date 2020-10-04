@@ -1,4 +1,15 @@
 # Task 1. Caesar cipher CLI tool
+
+В файл input.txt - требуется написать текст - который требуется зашифровать или расшифровать.
+
+В файлe output.txt - отобразится результат работы программы.
+
+Пример запуска работа из командной строки:
+
+`node caesar-cli -a encode -s 7 -i "./input.txt" -o "./output.txt"`
+`node caesar-cli --action encode --shift 7 --input input.txt --output output.txt`
+`node caesar-cli --action decode --shift 7 --input input.txt --output output.txt`
+
 Implement CLI tool that will encode and decode a text by Caesar cipher.
 
 CLI tool should accept 4 options (short alias and full name):

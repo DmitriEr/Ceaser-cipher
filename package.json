@@ -19,7 +19,8 @@
   "homepage": "https://github.com/DmitriEr/Ceaser-cipher#readme",
   "dependencies": {
     "chalk": "^4.1.0",
-    "commander": "^6.1.0"
+    "commander": "^6.1.0",
+    "through2": "^4.0.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
