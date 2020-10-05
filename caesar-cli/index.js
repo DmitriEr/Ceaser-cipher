@@ -21,18 +21,7 @@ program
   const shift = program.shift !== undefined ? parseInt(program.shift, 10) : program.shift;
   const action = program.action_;
 
-  const currentInput = fs.existsSync(path.join(__dirname, inputValue));
-
-  function test (text) {
-    const start = text.length - 4;
-    const expansion = text.substr(start, 4);
-    if (expansion !== '.txt') {
-      return true
-    }
-    return false;
-  }
-
-  test(inputValue)
+  const currentInput = inputValue !== undefined ? fs.existsSync(path.join(__dirname, inputValue)) : true;
 
   try {
     if (shift === undefined && action === undefined) {
