@@ -23,14 +23,19 @@
 - `node caesar-cli -a encode -s 7 -i input.txt`
 
 Пример шифровки:
+
 Input: `input.txt This is secret. Message about "_" symbol!`
+
 Output: `output.txt Aopz pz zljyla. Tlzzhnl hivba "_" zftivs!`
 
 Командная строка имеют 4 опции:
 
 `-s`, `--shift`: a shift (сдвиг)
+
 `-i`, `--input`: an input file (файл ввода)
+
 `-o`, `--output`: an output file (файл с результатом)
+
 `-a`, `--action`: an action encode/decode (тип действия)
 
 Спасибо, что посмотрели!
