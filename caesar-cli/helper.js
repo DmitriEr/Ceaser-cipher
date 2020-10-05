@@ -10,7 +10,6 @@ const getCodePoint = (init, count, min, max, type) => {
     case 'decode': {
       let value = init - count;
       if (value < min) {
-        console.log(min % value)
         return value = max - min % value + 1;
       }
       return value;

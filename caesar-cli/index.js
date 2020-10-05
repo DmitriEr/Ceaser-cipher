@@ -32,6 +32,8 @@ program
       throw new Error('Shift - not a number')
     } else if (!currentInput) {
       throw new Error('The given file input does not exist')
+    } else if (action !== 'encode' && action !== 'decode') {
+      throw new Error('Please write correct action type - decode or encode')
     }
     
     const read = readable(inputValue);
