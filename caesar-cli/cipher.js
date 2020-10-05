@@ -15,7 +15,7 @@ function cipher (shiftValue, actionValue) {
       }
     });
   
-    this.push(`${array.join('')}`);
+    this.push(`${array.join('')}\n`);
     callback()
    }
 }
